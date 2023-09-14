@@ -115,7 +115,7 @@ head(umd_courses)
 
 In the space below, write the name of the business from the first row of the "name" column. **Answer: Directed Research**
 
-![](images/Screenshot 2023-09-12 at 2.07.34 PM.png)
+![](images/Screenshot%202023-09-12%20at%202.07.34%20PM.png)
 
 ### Task 8: Explore data with interactive dataframe
 
