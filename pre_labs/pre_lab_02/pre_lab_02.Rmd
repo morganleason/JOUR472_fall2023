@@ -204,7 +204,7 @@ So the month of June 2022 had the most expenditures by far in this data.
 
 Describe the values in the new `month` column - what do you think is going on there?
 
-**Answer: The month column is called date, which reveals the number that corresponds with the month. Instead, it should be classified as a character, so it would read: Month.**
+**Answer: The month column is called "date," which reveals the number that corresponds with the month. Instead, it should be classified as a character, so it would read: Month.**
 
 ### Task 10: Mutate
 
