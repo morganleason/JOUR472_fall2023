@@ -379,4 +379,4 @@ Now that you have seen how to use mutate, filtering and dates, give me three que
 
 2.  What classes are taught in the Linguistics Department?
 
-3.  What classes are taught by Matthew McLaughin?
+3.  What classes are taught by Matthew McLaughlin?
