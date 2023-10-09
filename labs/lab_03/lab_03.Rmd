@@ -80,3 +80,13 @@ md_grants_loans |>
   summarise(total_amount = sum(amount)) |>
   arrange(desc(fiscal_year))
 ```
+
+Class example
+
+```{r}
+md_grants_loans |>
+  filter(agency_name == 'CAPITAL PROJECTS') |>
+  group_by(vendor_name) |>
+  summarise(total = sum(amount)) |>
+  arrange(desc(vendor_name))
+```
