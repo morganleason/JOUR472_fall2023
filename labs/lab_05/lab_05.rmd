@@ -79,14 +79,15 @@ Baltimore_County_log |>  mutate(day_of_week = wday(date)) |>
 
 Q3. Now let's look at locations. Which ones have the most calls? How would you describe them (feel free to search for more information on them)? Is there anything about the structure of the original data that might make you less confident in the counts by location or date?
 
-A3.
-
-grouping and summarizing
+A3. Silver Spring Road, Windsor Mill road, and Susquehanna avenue had the most calls. I would describe these roads as being located in a demographically-diverse area with lower incomes. The structure of the original data in terms of there being mutliple entries for the same day on different streets, makes me less confident in the counts by location and date because we are not analyzing all neighborhoods and towns. Certain neighborhoods carry specific income levels and other traits that could potentially raise the counts in that area.
 
 ```{r}
-
+Baltimore_County_log |>
+  group_by(location) |>
+  summarise(count = n()) |>
+  arrange(desc(count))
 ```
 
 Q4. What's the best story idea or question you've seen as a result of the work you've done in this lab?
 
-A4.
+A4. I would write a investigative story into whether there is a correlation between weekends and higher rates of overdoses.
