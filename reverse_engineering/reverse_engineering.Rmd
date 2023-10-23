@@ -55,9 +55,9 @@ sports_donation <- read_csv("data/sports-political-donations.csv") |>
 
 In this notebook, we are reverse engineering five sentences from the story.
 
-### 1: "Of the 160 owners and commissioners in ESPN's database, 74 contributed a majority of their publicly searchable funds to Republican campaigns, with 48 donating a majority to Democrats and the rest sending most of their money to causes that aren't fully aligned with either party." 
+### 1: "Of the 160 owners and commissioners in ESPN's database, 74 contributed a majority of their publicly searchable funds to Republican campaigns, with 48 donating a majority to Democrats and the rest sending most of their money to causes that aren't fully aligned with either party."
 
-### Who provided the highest number of donations? 
+### Who provided the highest number of donations?
 
 A: Charles Johnson. Johnson had 213 total donations.
 
@@ -73,7 +73,7 @@ sports_donation |>
 
 ```
 
-### 2: "Drilling down deeper into the data, we can see that federal contributions in each league lean red, except for in the WNBA." 
+### 2: "Drilling down deeper into the data, we can see that federal contributions in each league lean red, except for in the WNBA."
 
 ### Which league gave the most individual donations? A: MLB, which gave 746 donations, well above the rest.
 
@@ -87,9 +87,9 @@ sports_donation |>
 
 ```
 
-### 3: "Expanding to all the leagues in our research, here are their totals to each party over the six-year period." 
+### 3: "Expanding to all the leagues in our research, here are their totals to each party over the six-year period."
 
-### How many donations for the top party? 
+### How many donations for the top party?
 
 A: The top party that received the most donations was the Democratic Party. These results were slightly unclear because the top listing was "Bipartisan," which indicates that some of the donations were tareting something other than the party such as donations for passing a specific bill.
 
@@ -102,9 +102,9 @@ sports_donation |>
 
 ```
 
-### 4: "There are 40 owners who have donated at least \$100,000 to Republican causes over the six-year period, compared to 23 owners topping \$100,000 to Democrats, helping lead to these splits." 
+### 4: "There are 40 owners who have donated at least \$100,000 to Republican causes over the six-year period, compared to 23 owners topping \$100,000 to Democrats, helping lead to these splits."
 
-### Which year had the most number of donations? 
+### Which year had the most number of donations?
 
 A: The election year 2018 had the most number of donations.
 
