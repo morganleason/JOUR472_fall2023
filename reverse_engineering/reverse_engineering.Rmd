@@ -57,63 +57,133 @@ In this notebook, we are reverse engineering five sentences from the story.
 
 ### 1: "Of the 160 owners and commissioners in ESPN's database, 74 contributed a majority of their publicly searchable funds to Republican campaigns, with 48 donating a majority to Democrats and the rest sending most of their money to causes that aren't fully aligned with either party."
 
-### Who provided the highest number of donations?
-
-A: Charles Johnson. Johnson had 213 total donations.
-
 ```{r}
-# Put code to reverse engineer sentence here
-
+#number of owners/commissioners —— 158 rows, have to figure out way to get both owners and commisioners for the "more than 160 owners and commisioners"
 sports_donation |>
-  group_by(Owner) |>
-  summarise(total_donations = n()) |>
-  arrange(desc(total_donations))
-
-# Display results of code below this codeblock
-
+  filter(str_detect(Party, 'Republican')) |>
+  group_by(Owner) |> 
+  summarise(total = n())
 ```
 
-### 2: "Drilling down deeper into the data, we can see that federal contributions in each league lean red, except for in the WNBA."
-
-### Which league gave the most individual donations? A: MLB, which gave 746 donations, well above the rest.
+### 2: "American professional sports owners have contributed nearly \$47 million in federal elections since 2015, according to research by ESPN in partnership with FiveThirtyEight, including \$10 million to Republican causes and \$1.9 million to Democratic causes so far in the 2020 election cycle."
 
 ```{r}
-# Put code to reverse engineer sentence here
+#sum total donations: $46,978,697 ~ nearly $47 million.
+
 sports_donation |>
-  group_by(League) |>
-  summarise(total_donation = n()) |>
-  arrange(desc(total_donation))
-# Display results of code below this codeblock
+  summarise(Amount)
+
+#find total Democrat donations specific to 2020 election cycle: $1,877,133 ~ $1.9 million.
+
+sports_donation |>
+  filter(str_detect(Party, "Democrat")) |>
+  filter(`Election Year`== "2020") |>
+  summarise(Amount) |>
+  sum()
+
+#find total Republican donations specific to 2020 election cycle: $10,111,284 ~ $10 million.
+
+sports_donation |>
+  filter(str_detect(Party, "Republican")) |>
+  filter(`Election Year` == "2020") |>
+  summarise(Amount) |>
+  sum()
 
 ```
 
 ### 3: "Expanding to all the leagues in our research, here are their totals to each party over the six-year period."
 
-### How many donations for the top party?
-
-A: The top party that received the most donations was the Democratic Party. These results were slightly unclear because the top listing was "Bipartisan," which indicates that some of the donations were tareting something other than the party such as donations for passing a specific bill.
+### Which team owners gave the most? Donations from team owners, by cyle and party donated to: (this was in a table in the original story)
 
 ```{r}
-# Put code to reverse engineer sentence here
-sports_donation |> 
-  group_by(Party) |>
-  summarise(n()) 
-# Display results of code below this codeblock
+# Who provided the highest number of donations? Charles Johnson.
+sports_donation |>
+  group_by(Owner) |>
+  summarise(total_donations = n()) |>
+  arrange(desc(total_donations))
+
+# Which league gave the most individual donations? MLB
+sports_donation |>
+  group_by(League) |>
+  summarise(total_donation = n()) |>
+  arrange(desc(total_donation))
 
 ```
 
-### 4: "There are 40 owners who have donated at least \$100,000 to Republican causes over the six-year period, compared to 23 owners topping \$100,000 to Democrats, helping lead to these splits."
+### 4.  Overall, 51.7 percent of all contributions by WNBA owners went to Democrats, with 42.3 percent going to Republicans. And of the \$1.3 million contributed by WNBA owners to Republicans, 65.5 percent comes from Kelly Loeffler, the Republican from Georgia who is co-owner of the Atlanta Dream.
 
-### Which year had the most number of donations?
-
-A: The election year 2018 had the most number of donations.
+\`\`\`{r}
 
 ```{r}
-# Put code to reverse engineer sentence here
+sports_donation |>
+  filter(League == 'WNBA') |>
+  group_by(Owner) |>
+  summarise(WNBA_AMT = sum(Amount)) |>
+  arrange(desc(WNBA_AMT))
+
+#Kelly Loeffler: $896,150
+
+sports_donation |>
+  filter(League == 'WNBA') |>
+  filter(str_detect(Party, 'Republican')) |>
+  summarise(sum(Amount))
+
+#when adding up Republican WNBA spending, the total is $1,055,552 — this is not $1.3m, have to figure out why.
+
+100*(896150/1055552)
+
+sports_donation |>
+  filter(League == 'WNBA') |>
+  group_by(Party) |>
+  summarise(total = sum(Amount))
+# there seems to be no WNBA donations for "Bipartisan, but mostly Democrat."
+
+```
+
+### 5.  "There are 40 owners who have donated at least \$100,000 to Republican causes over the six-year period, compared to 23 owners topping \$100,000 to Democrats, helping lead to these splits."
+
+```{r}
+# There are 37 rows of owners that donated more than $100,000 to Republican causes.
+sports_donation |>
+  filter(str_detect(Party, 'Republican')) |>
+  group_by(Owner) |>
+  summarise(total = sum(Amount)) |>
+  filter(total >= 100000)
+
+# 22 rows of owners that donated more than $100,000 to Democrat causes.
+sports_donation |>
+  filter(str_detect(Party, 'Democrat')) |>
+  group_by(Owner) |>
+  summarise(total = sum(Amount)) |>
+  filter(total >= 100000)
+
+
+# Which year had the most donations? 2018
 sports_donation |>
   group_by(`Election Year`) |>
   summarise(count_per_year = n()) |>
   arrange(desc(count_per_year))
-# Display results of code below this codeblock
+```
 
+### 6. "A deep search in the Federal Election Commission database of campaign finances for principal owners, controlling owners, co-owners and commissioners from the NBA, NFL, NHL, WNBA, MLB and NASCAR reveals that this deep-pocketed group has sent \$34.2 million (72.9 percent) to Republican campaigns or super PACs purely supporting Republican\*\* causes, compared to \$10.1 million (21.5 percent) to Democrats over the past three elections. Less than 6 percent of contributions went to bipartisan or unaffiliated recipients."
+
+```{r}
+# Money sent to purely Republican causes: 
+# sum: 34,246,016 ~ $34.2 million, the total donation amount was $46,978,697
+# 34,246,016/46,978,697 = 0.728969 = 72.3%
+sports_donation |>
+  filter(Party == 'Republican') |>
+  summarise(sum(Amount))
+
+100*(34246016/46978697)
+
+# Money sent to purely Democrat causes:
+# sum: $10,113,639 ~ $10.1 million.
+# $10,113,639/46,978,697 = 0.2152814 = 21.5%
+
+sports_donation |>
+  filter(Party == 'Democrat') |>
+  summarise(sum(Amount))
+
+100*(10113639/46978697)
 ```
