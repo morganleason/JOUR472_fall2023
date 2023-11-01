@@ -102,7 +102,7 @@ alldata <- p00 |> inner_join(p10)
 
 And now we calculate the percent change.
 
-**Task** Run the following codeblock to calculate the percentage change and put the state with the largest percentage growth below. **Answer**
+**Task** Run the following codeblock to calculate the percentage change and put the state with the largest percentage growth below. **Answer: Nevada**
 
 ```{r}
 alldata |> mutate(change = ((Population2010-Population2000)/Population2000)*100) |> arrange(desc(change))

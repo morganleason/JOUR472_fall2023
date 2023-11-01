@@ -35,7 +35,7 @@ You'll need your Census API Key:
 **Task** set your API Key if you haven't already. You won't need to install or overwrite it.
 
 ```{r echo=FALSE}
-census_api_key("260e5e13366f67bfb36b85aa846e2e60d5a0d5ca", install=TRUE)
+census_api_key("260e5e13366f67bfb36b85aa846e2e60d5a0d5ca", install=TRUE,overwrite = TRUE)
 ```
 
 ## Load and view ACS variables
@@ -50,16 +50,18 @@ v21 <- load_variables(2021, "acs5", cache=TRUE)
 
 ## Answer questions
 
-**Q1** What is the Maryland jurisdiction with the lowest median age, according to the ACS 2021 5-year estimates? You will need to find the variable for median age first (search for it in the 'concept' column at the data frame we just created). **A1**
+**Q1** What is the Maryland jurisdiction with the lowest median age, according to the ACS 2021 5-year estimates? You will need to find the variable for median age first (search for it in the 'concept' column at the data frame we just created). **A1: the city with the lowest median age in the state of Maryland is Baltimore City with the age being 35.7 years old.**
 
 ```{r}
+md_median_age <- get_acs(geography = 'county', variables = "B01002_001", year = 2021, state = 'MD')
 
+md_median_age |> arrange(estimate)
 ```
 
-**Q2** Which Maryland counties have a median age of at least 50? You can use the dataframe you just made to answer this, but you must write code to display only those counties with a median age of at least 50. **A2**
+**Q2** Which Maryland counties have a median age of at least 50? You can use the dataframe you just made to answer this, but you must write code to display only those counties with a median age of at least 50. **A2: Talbot County and Worcester are the only counties in Maryland with a median age of at least 50 years old.**
 
 ```{r}
-
+md_median_age |> filter(estimate >=50)
 ```
 
 **Q3** We're interested in knowing more about Montgomery County zip codes where overdose calls are coming from and the demographic characteristics they possess. In particular, we want to calculate a rate of calls per 1,000 population. To do this, you'll need to:
@@ -73,18 +75,66 @@ v21 <- load_variables(2021, "acs5", cache=TRUE)
 
 Which zip code has the highest rate of calls? Which has the lowest?
 
-**A3**
+**A3: the zip code 20877 had the highest count of 1.70. The county with the lowest was 20707 with .03.**
 
 ```{r}
+moco_911_calls <- read_csv('data/montgomery_2022_overdoses.csv') |>
+  mutate(zip = as.character(zip))
+
+moco_911_calls_per_zip <- moco_911_calls |>
+  group_by(zip) |>
+  summarise(count = n())
+
+md_pop_zcta <- get_acs(
+  geography = 'zcta' ,
+  variables = 'B09021_001' ,
+  year = 2019 ,
+  state = 'MD'
+)
+
+moco_join_pop_calls <- moco_911_calls_per_zip |>
+  inner_join(md_pop_zcta, by=c('zip' = 'GEOID'))
+
+moco_join_pop_calls <- moco_join_pop_calls |>
+  mutate(rate_per_1k = (count/estimate)*1000) |>
+  arrange(desc(rate_per_1k))
 ```
 
 **Q4** Using [CensusReporter.org](https://censusreporter.org/), examine the zip codes with the highest and lowest rates and compare and contrast their demographic profiles. Is there a story here?
 
-**A4**
+**A4: 20877 has the highest rates on the census report and represents Gaithersburg, Maryland. Gaithersburg has a very diverse population with a relatively small poverty percentage. 20707 has the lowest rates on the census report and represents Laurel, Maryland. Laurel has a large Black percentage of their population, a higher income spread and an even smaller percentage of the population below the poverty line.**
 
 **Q5** Go back to your joined dataframe from Q3 and add two more columns representing the minimum and maximum populations based on the estimate and margin of error, then calculate per capita rates for each. Do you get the same two zip codes for the highest and lowest as you did before? Does that give you more or less confidence in your answers to Q3?
 
-**A5**
+**A5: I ended up with the same results as before. This makes me more confident in my answers to Q3.**
 
 ```{r}
+moco_911_calls <- read_csv('data/montgomery_2022_overdoses.csv') |>
+  mutate(zip = as.character(zip))
+
+moco_911_calls_per_zip <- moco_911_calls |>
+  group_by(zip) |>
+  summarise(count = n())
+
+md_pop_zcta <- get_acs(
+  geography = 'zcta' ,
+  variables = 'B09021_001' ,
+  year = 2019 ,
+  state = 'MD'
+)
+
+moco_join_pop_calls <- moco_911_calls_per_zip |>
+  inner_join(md_pop_zcta, by=c('zip' = 'GEOID'))
+
+moco_join_pop_calls <- moco_join_pop_calls |>
+  mutate(rate_per_1k = (count/estimate)*1000) |>
+  arrange(desc(rate_per_1k))
+
+moco_join_pop_calls <- moco_join_pop_calls |>
+  mutate(
+    min_population = estimate - moe,
+    max_population = estimate - moe,
+    rate_per_1k = (count / estimate) * 1000) |>
+  arrange(desc(rate_per_1k)
+  )
 ```
