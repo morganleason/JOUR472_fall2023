@@ -131,12 +131,19 @@ sports_donation |>
 #when adding up Republican WNBA spending, the total is $1,055,552 — this is not $1.3m, have to figure out why.
 
 100*(896150/1055552)
+100*(896150/1300000)
 
 sports_donation |>
   filter(League == 'WNBA') |>
   group_by(Party) |>
   summarise(total = sum(Amount))
+
 # there seems to be no WNBA donations for "Bipartisan, but mostly Democrat."
+
+sports_donation |>
+  filter(League == 'WNBA') |>
+  group_by(Owner) |>
+  summarise(total = sum(Amount))
 
 ```
 
@@ -156,6 +163,8 @@ sports_donation |>
   group_by(Owner) |>
   summarise(total = sum(Amount)) |>
   filter(total >= 100000)
+
+#These discrepancies are a little odd, as they are just slightly off from what FiveThirtyEight reported. We think that this could be because of the same issue with the WNBA calculations due to the data itself.
 
 
 # Which year had the most donations? 2018
