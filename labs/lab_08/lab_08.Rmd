@@ -148,12 +148,5 @@ scatterplot <- ggplot(data = result_df, aes(x = estimate, y = total_calls, label
   )
 scatterplot
 
-
-
-
-
-
-
-
 # axis on the scatterplot: estimate = x-axis, # of calls = y-axis. Each dot represents a zip code. Use pg county data and md_median_income_zip data. Join two together and create a chart based on that.
 ```
