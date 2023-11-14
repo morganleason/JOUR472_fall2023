@@ -31,11 +31,11 @@ library(janitor)
 
 ## Questions
 
-**Q1.** You want to explore the differences between the electoral
-performances of Dan Cox in 2022 and Larry Hogan in 2018. Except a map is
-probably not the best way to show that. Let's make a chart instead, and
-the type is up to you, but the goal is to clearly show the differences
-between the two.
+**Q1.** You want to explore the differences between **the electoral
+performances of Dan Cox in 2022 and Larry Hogan in 2018.** Except a map
+is probably not the best way to show that. Let's make a chart instead,
+and the type is up to you, but the goal is to clearly show the
+differences between the two.
 
 You MUST do the following things when answering this question: \* Load
 the md_gov_county.csv and md_gov_county_18.csv files from the data
@@ -51,40 +51,37 @@ readable labels and values \* Publish your chart \* Describe your
 thought process below - why you chose to make the chart you did - and
 add the URL of your chart.
 
-**A1.**
+**A1. This bar chart clearly shows the data in a way that readers can
+quickly comprehend. I hid irrelevant data to highlight the two
+candidates being discussed.**
+
+<https://datawrapper.dwcdn.net/4xxWw/1/>
 
 ```{r}
-#* Load the md_gov_county.csv and md_gov_county_18.csv files from the data folder 
-md_gov_county_18 <- read_csv("data/md_gov_county_18.csv")
-md_gov_county <- read_csv("data/md_gov_county.csv")
-md_votes_by_type <- read_csv("data/md_votes_by_type.csv")
-montgomery_2022_overdoses <- read_csv("data/montgomery_2022_overdoses.csv")
+md_gov_county_2022 <- read_csv("data/md_gov_county.csv")
+md_gov_county_2018 <- read_csv("data/md_gov_county_18.csv")
 
-#*Add columns to generate percentages for Cox and Hogan.
-md_gov_county <- md_gov_county |>
-  mutate(total_votes = Cox + Moore + Lashar + Wallace + Harding + Sefcik + `Write-ins`, Pct_Cox = (Cox/total_votes)*100)
+md_gov_comparison <- md_gov_county_2018 |>
+  left_join(md_gov_county_2022, by=c("GEOID"))
 
-md_gov_county_18 <- md_gov_county_18 |>
-  mutate(total_votes = Hogan + Jealous + Quinn + Schlakman + `Write-ins`, Pct_Hogan = (Hogan/total_votes)*100)
-
-#*Join the two dataframes together
-
-md_county_combined <- md_gov_county_18 |>
-  inner_join(md_gov_county, by=c('County', 'GEOID'))
+colnames(md_gov_comparison) <- c("zipcode" , "county 2018" , "Hogan 2018" , "Jealous 2018" , "Quinn 2018" , "Schlakman 2018" , "Write-Ins 2018" , "county 2022" , "Cox 2022" , "Moore 2022" , "Lasher 2022" , "Wallace 2022" , "Harding 2022" , "Sefcik 2022" , "Write-Ins 2022")
 
 
-#*Export that joined dataframe to a CSV file using write_csv.
-#*Make a chart with Datawrapper. Have a title, description and source that tells readers about the data. The title and description should highlight the most newsworthy or important aspect. * Easily readable labels and values
+md_gov_comparison <- md_gov_comparison |>
+  mutate(total_votes = `Cox 2022` + `Moore 2022` + `Lasher 2022` + `Wallace 2022` + `Harding 2022` + `Sefcik 2022` + `Write-Ins 2022`, pct_Cox = (`Cox 2022`/total_votes)*100)
 
+md_gov_comparison <- md_gov_comparison|>
+  mutate(total_votes_2018 = `Hogan 2018` + `Jealous 2018` + `Quinn 2018` + `Schlakman 2018` + `Write-Ins 2018`, pct_Hogan = (`Hogan 2018`/total_votes_2018)*100)
 
+write_csv(md_gov_comparison, "data/md_gov_comparison.csv")
 ```
 
 **Q2.** You're interested in seeing how the methods of voting have
 changed in Maryland since 2018. Using the `md_votes_by_type.csv` that
 has data from the top of the ticket (governor in 2018 and 2022,
 president in 2020), make a chart showing the percentage of votes cast in
-each category - early voting, election day and mail - over the three
-years. You'll need to make those percentages in R and then export the
+each category - **early voting, election day and mail - over the three
+years**. You'll need to make those percentages in R and then export the
 CSV using `write_csv`, then make the chart in Datawrapper. Have a title,
 description and source that tells readers about the data. The title and
 description should highlight the most newsworthy or important aspect.
@@ -95,10 +92,30 @@ column to get the option of "hiding" it in any visualization.
 What do you think the story here is? Put the answer below along with the
 URL of your chart.
 
-**A2.**
+**A2. I think the story here is that during the pandemic, people
+switched from election day voting to early and mail methods. However,
+when the pandemic ended, people reverted back to election day voting but
+now more people than prior to the pandemic utilize mail-in voting.**
+
+<https://datawrapper.dwcdn.net/Xpkvg/1/>
 
 ```{r}
+md_votes_by_type <- read_csv("data/md_votes_by_type.csv")
 
+#Make a chart showing the percentage of votes cast in each category - early voting, election day and mail - over the three years. 
+
+md_votes_by_type <- md_votes_by_type |>
+  mutate(total_votes = Early + `Election Day` + Mail, Pct_Early = (Early/total_votes)*100)
+
+md_votes_by_type <- md_votes_by_type |>
+  mutate(total_votes = Early + `Election Day` + Mail, Pct_Election_Day = (`Election Day`/total_votes)*100)
+
+md_votes_by_type <- md_votes_by_type |>
+  mutate(total_votes = Early + `Election Day` + Mail, Pct_Mail = (Mail/total_votes)*100)
+
+#Export the CSV using write_csv, then make the chart in Datawrapper. 
+
+write_csv(md_votes_by_type, "data/md_votes_by_type.csv")
 ```
 
 **Q3.** You want to know more about the geography of 911 overdose calls
@@ -123,8 +140,27 @@ choropleth map in Datawrapper. You will need to:
 What do you think the story here is, and what would you want to know
 more about? Put the answer below along with the URL of your map.
 
-**A3.**
+**A3. I think the story here is about why there are so many overdose
+calls in Germantown in Montgomery County. Other towns in the county have
+much less. It appears that towards the center of the county has the
+highest concentration of overdose calls. I would like to know what the
+income-level is in this area and whether the town with the greater
+number of overdose calls have income issues or other factors that would
+play into these results.**
+
+<https://datawrapper.dwcdn.net/P3dv6/1/>
 
 ```{r}
+montgomery_2022_overdoses <- read_csv("data/montgomery_2022_overdoses.csv") |> clean_names()
 
+#create columns for the number of calls in each zip code and the percentage of all calls that number represents
+zipcode_calls <- montgomery_2022_overdoses |>
+  group_by(zip) |>
+  summarise(total_calls = n())
+
+zipcode_calls <- zipcode_calls |>
+  mutate(pct_of_calls = (total_calls/sum(total_calls))*100)
+
+
+write_csv(zipcode_calls, "data/zipcode_calls.csv")
 ```
