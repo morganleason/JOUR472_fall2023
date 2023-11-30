@@ -19,6 +19,10 @@ umd_roster |>
 
 ```
 
+Limitations:
+
+The data does not include much information other than the average heights of the players and the hometowns. We want to learn more about the descriptive statistics. That is where the next data set comes in.
+
 ```{r}
 #Shows basic exploratory analysis to demonstrate an understanding of the dataset, including the number of rows and columns, any obvious limitations or flaws and any reasons why it might not be able to answer the questions you've listed last week.
 womens_basketball_stats |>
