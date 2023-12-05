@@ -4,6 +4,12 @@ output: html_notebook
 ---
 
 ```{r}
+#Load libraries
+library(janitor)
+library(tidyverse)
+```
+
+```{r}
 #Load and clean the data
 womens_basketball_stats <- read_csv("data/womens_basketball_stats.csv") |> clean_names()
 
@@ -26,6 +32,12 @@ womens_basketball_stats |>
   arrange(desc(avg_23))
 ```
 
+```{r}
+#joining the two tables you have by the names of the players, since they have different formats. You're going to have to make use of str_detect()
+
+
+```
+
 Q1: Describe the limits of the data in terms of timeframe, what is and is not included and any codes or other information you'd need to find definitions for, and what you've done to better define it.
 
-In terms of timeframe, the datasets that we are working with are limited to the current Maryland women\'s basketball team, using information from the roster that was released at the beginning of the season. The first dataset, the roster data, includes biographical information about each player including their name, position, height, year, hometown and previous college that they transferred from if applicable. The second dataset we are considering is a compilation of stats only from the first seven games. These stats include metrics like games played, games started, minutes played, points, shooting percentage and rebounds. There are no metrics that we need to find definitions for, but we could add stats from the upcoming games if we so choose. Other information we need is the majors of each of the players, which was not included in the roster or statistics dataset. To answer another one of our original questions, we will also look for another dataset about the players' financial records from the last few years to get information on the resources and whether or not there are inequities for the women's basketball team.
+In terms of timeframe, the datasets that we are working with are limited to the current Maryland women's basketball team, using information from the roster that was released at the beginning of the season. The first dataset, the roster data, includes biographical information about each player including their name, position, height, year, hometown and previous college that they transferred from if applicable. The second dataset we are considering is a compilation of stats only from the first seven games. These stats include metrics like games played, games started, minutes played, points, shooting percentage and rebounds. There are no metrics that we need to find definitions for, but we could add stats from the upcoming games if we so choose. Other information we need is the majors of each of the players, which was not included in the roster or statistics dataset. To answer another one of our original questions, we will also look for another dataset about the players' financial records from the last few years to get information on the resources and whether or not there are inequities for the women's basketball team.

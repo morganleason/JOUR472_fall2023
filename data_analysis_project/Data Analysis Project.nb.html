@@ -1754,15 +1754,45 @@ display: none;
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI0xvYWQgbGlicmFyaWVzXG5saWJyYXJ5KGphbml0b3IpXG5gYGAifQ== -->
+<pre class="r"><code>#Load libraries
+library(janitor)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5BdHRhY2hpbmcgcGFja2FnZTog4oCYamFuaXRvcuKAmVxuXG5UaGUgZm9sbG93aW5nIG9iamVjdHMgYXJlIG1hc2tlZCBmcm9tIOKAmHBhY2thZ2U6c3RhdHPigJk6XG5cbiAgICBjaGlzcS50ZXN0LCBmaXNoZXIudGVzdFxuIn0= -->
+<pre><code>
+Attaching package: ‘janitor’
+
+The following objects are masked from ‘package:stats’:
+
+    chisq.test, fisher.test</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5gYGAifQ== -->
+<pre class="r"><code>library(tidyverse)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoi4pSA4pSAIEF0dGFjaGluZyBjb3JlIHRpZHl2ZXJzZSBwYWNrYWdlcyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAgdGlkeXZlcnNlIDIuMC4wIOKUgOKUgFxu4pyUIGRwbHlyICAgICAxLjEuMyAgICAg4pyUIHJlYWRyICAgICAyLjEuNFxu4pyUIGZvcmNhdHMgICAxLjAuMCAgICAg4pyUIHN0cmluZ3IgICAxLjUuMFxu4pyUIGdncGxvdDIgICAzLjQuMyAgICAg4pyUIHRpYmJsZSAgICAzLjIuMVxu4pyUIGx1YnJpZGF0ZSAxLjkuMiAgICAg4pyUIHRpZHlyICAgICAxLjMuMFxu4pyUIHB1cnJyICAgICAxLjAuMiAgICAg4pSA4pSAIENvbmZsaWN0cyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAgdGlkeXZlcnNlX2NvbmZsaWN0cygpIOKUgOKUgFxu4pyWIGRwbHlyOjpmaWx0ZXIoKSBtYXNrcyBzdGF0czo6ZmlsdGVyKClcbuKcliBkcGx5cjo6bGFnKCkgICAgbWFza3Mgc3RhdHM6OmxhZygpXG7ihLkgVXNlIHRoZSBcdTAwMWJdODs7aHR0cDovL2NvbmZsaWN0ZWQuci1saWIub3JnL1x1MDAwN2NvbmZsaWN0ZWQgcGFja2FnZVx1MDAxYl04OztcdTAwMDcgdG8gZm9yY2UgYWxsIGNvbmZsaWN0cyB0byBiZWNvbWUgZXJyb3JzXG4ifQ== -->
+<pre><code>── Attaching core tidyverse packages ────────────────────────────────────────────────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.3     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     ── Conflicts ──────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the ]8;;http://conflicted.r-lib.org/conflicted package]8;; to force all conflicts to become errors</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI0xvYWQgYW5kIGNsZWFuIHRoZSBkYXRhXG53b21lbnNfYmFza2V0YmFsbF9zdGF0cyA8LSByZWFkX2NzdihcImRhdGEvd29tZW5zX2Jhc2tldGJhbGxfc3RhdHMuY3N2XCIpIHw+IGNsZWFuX25hbWVzKClcbmBgYCJ9 -->
 <pre class="r"><code>#Load and clean the data
 womens_basketball_stats &lt;- read_csv(&quot;data/womens_basketball_stats.csv&quot;) |&gt; clean_names()</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTmV3IG5hbWVzOlJvd3M6IDE1IENvbHVtbnM6IDIz4pSA4pSAIENvbHVtbiBzcGVjaWZpY2F0aW9uIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgFxuRGVsaW1pdGVyOiBcIixcIlxuY2hyICAoNSk6ICMgUGxheWVyLCBHUC1HUywgRkctRkdBLCAzRkctRkdBLCBGVC1GVEFcbmRibCAoMTcpOiBNSU4sIEFWRy4uLjUsIEZHJSwgM0ZHJSwgRlQlLCBPRkYsIERFRiwgVE9ULCBBVkcuLi4xLi4uXG5sZ2wgICgxKTogLi4uMlxu4oS5IFVzZSBgc3BlYygpYCB0byByZXRyaWV2ZSB0aGUgZnVsbCBjb2x1bW4gc3BlY2lmaWNhdGlvbiBmb3IgdGhpcyBkYXRhLlxu4oS5IFNwZWNpZnkgdGhlIGNvbHVtbiB0eXBlcyBvciBzZXQgYHNob3dfY29sX3R5cGVzID0gRkFMU0VgIHRvIHF1aWV0IHRoaXMgbWVzc2FnZS5cbiJ9 -->
-<pre><code>New names:Rows: 15 Columns: 23── Column specification ──────────────────────────────────────────
+<!-- rnb-output-begin eyJkYXRhIjoiTmV3IG5hbWVzOlJvd3M6IDE1IENvbHVtbnM6IDIz4pSA4pSAIENvbHVtbiBzcGVjaWZpY2F0aW9uIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgFxuRGVsaW1pdGVyOiBcIixcIlxuY2hyICAoNSk6ICMgUGxheWVyLCBHUC1HUywgRkctRkdBLCAzRkctRkdBLCBGVC1GVEFcbmRibCAoMTcpOiBNSU4sIEFWRy4uLjUsIEZHJSwgM0ZHJSwgRlQlLCBPRkYsIERFRiwgVE9ULCBBVkcuLi4xNSwgUEYsIERRLCBBLCBUTywgQkxLLCBTVEwsIFBUUywgQVZHLi4uXG5sZ2wgICgxKTogLi4uMlxu4oS5IFVzZSBgc3BlYygpYCB0byByZXRyaWV2ZSB0aGUgZnVsbCBjb2x1bW4gc3BlY2lmaWNhdGlvbiBmb3IgdGhpcyBkYXRhLlxu4oS5IFNwZWNpZnkgdGhlIGNvbHVtbiB0eXBlcyBvciBzZXQgYHNob3dfY29sX3R5cGVzID0gRkFMU0VgIHRvIHF1aWV0IHRoaXMgbWVzc2FnZS5cbiJ9 -->
+<pre><code>New names:Rows: 15 Columns: 23── Column specification ──────────────────────────────────────────────────────────────────────────────
 Delimiter: &quot;,&quot;
 chr  (5): # Player, GP-GS, FG-FGA, 3FG-FGA, FT-FTA
-dbl (17): MIN, AVG...5, FG%, 3FG%, FT%, OFF, DEF, TOT, AVG...1...
+dbl (17): MIN, AVG...5, FG%, 3FG%, FT%, OFF, DEF, TOT, AVG...15, PF, DQ, A, TO, BLK, STL, PTS, AVG...
 lgl  (1): ...2
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
@@ -1770,10 +1800,10 @@ lgl  (1): ...2
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudW1kX3Jvc3RlciA8LSByZWFkX2NzdihcImRhdGEvdW1kX3Jvc3Rlci5jc3ZcIikgfD4gY2xlYW5fbmFtZXMoKVxuYGBgIn0= -->
 <pre class="r"><code>umd_roster &lt;- read_csv(&quot;data/umd_roster.csv&quot;) |&gt; clean_names()</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiUm93czogMTQgQ29sdW1uczogN+KUgOKUgCBDb2x1bW4gc3BlY2lmaWNhdGlvbiDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIBcbkRlbGltaXRlcjogXCIsXCJcbmNociAoNik6IE5BTUUsIFBPUy4sIEhULiwgWUVBUiwgSE9NRVRPV04gLyBISUdIIFNDSE9PTCwgUFJFVklPLi4uXG5kYmwgKDEpOiAjXG7ihLkgVXNlIGBzcGVjKClgIHRvIHJldHJpZXZlIHRoZSBmdWxsIGNvbHVtbiBzcGVjaWZpY2F0aW9uIGZvciB0aGlzIGRhdGEuXG7ihLkgU3BlY2lmeSB0aGUgY29sdW1uIHR5cGVzIG9yIHNldCBgc2hvd19jb2xfdHlwZXMgPSBGQUxTRWAgdG8gcXVpZXQgdGhpcyBtZXNzYWdlLlxuIn0= -->
-<pre><code>Rows: 14 Columns: 7── Column specification ──────────────────────────────────────────
+<!-- rnb-output-begin eyJkYXRhIjoiUm93czogMTQgQ29sdW1uczogN+KUgOKUgCBDb2x1bW4gc3BlY2lmaWNhdGlvbiDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIBcbkRlbGltaXRlcjogXCIsXCJcbmNociAoNik6IE5BTUUsIFBPUy4sIEhULiwgWUVBUiwgSE9NRVRPV04gLyBISUdIIFNDSE9PTCwgUFJFVklPVVMgU0NIT09MXG5kYmwgKDEpOiAjXG7ihLkgVXNlIGBzcGVjKClgIHRvIHJldHJpZXZlIHRoZSBmdWxsIGNvbHVtbiBzcGVjaWZpY2F0aW9uIGZvciB0aGlzIGRhdGEuXG7ihLkgU3BlY2lmeSB0aGUgY29sdW1uIHR5cGVzIG9yIHNldCBgc2hvd19jb2xfdHlwZXMgPSBGQUxTRWAgdG8gcXVpZXQgdGhpcyBtZXNzYWdlLlxuIn0= -->
+<pre><code>Rows: 14 Columns: 7── Column specification ──────────────────────────────────────────────────────────────────────────────
 Delimiter: &quot;,&quot;
-chr (6): NAME, POS., HT., YEAR, HOMETOWN / HIGH SCHOOL, PREVIO...
+chr (6): NAME, POS., HT., YEAR, HOMETOWN / HIGH SCHOOL, PREVIOUS SCHOOL
 dbl (1): #
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
@@ -1789,16 +1819,15 @@ umd_roster |&gt;
   summarise(count = n()) |&gt;
   arrange(desc(ht))</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6NywibmNvbCI6Miwic3VtbWFyeSI6eyJBIHRpYmJsZSI6WyI3IMOXIDIiXX19LCJyZGYiOiJINHNJQUFBQUFBQUFBMTFRVFUvRE1BeDEwb1pxa2ZpUStBTzc5ZFJxRzJMc0J5QitBR0xTcnFFclcwVkpwallWSFBuYlhGYWNMbVkwQjdkK0wzNzJzNThmTjNkeUl3RWdnamhpRUFsTVFheGZucklWUU13Uk1JaGg0djVmV0hTTGlTTnZNQkwvY0xGTXB3OXArZzh0Um1nK1FyTXp1aytucXhGYS9xRUUwZHlWQWx3T281d1BORFFZUFFVN3g4aW4wT3FqYkwxSDdrbSt0L1JjbUU3YlFETnB6R2RPT2plUWYrT243L3Vmc0hsUnE1YWFFeW0zeXFyOHJVRTlvbU1nU2N6QlZrYWppTHZyaVVETW1vQzQ3clJ6c3MyS2ZhZmZzNFViNEZjRjc0NzVrMURPVHlONTcxc0p1bW1wZDVVdXlYdXRYc3ZhZ3l2Y2VGZzRQelNWcHVOSVpOdmNHcXVvVGhhbUptYllEWTYvRW9tOE5EUUNBQUE9In0= -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6NywibmNvbCI6Miwic3VtbWFyeSI6eyJBIHRpYmJsZSI6WyI3IMOXIDIiXX19LCJyZGYiOiJINHNJQUFBQUFBQUFBMTFRVFUvRE1BeDEwb1pxa2ZpUStBTzc5ZFJxWTJMc0J5QitBR0xTcnFFclcwVkpwallWSFBuYlhGYWNMbVkwQjdkK0wzNzJzNThmTnd1NWtRQVFRUnd4aUFTbUlOWXZUOWtLSU9ZSUdNUXdjZjh2TExyRnhKRTNHSWwvdUZpbTA0YzAvWWZ1Um1nK1FyTXp1aytucXhGYS9xRUUwZHlWQWx3T281d1BORFFZUFFVN3g4aW4wT3FqYkwxSDdrbSt0L1JjbUU3YlFETnB6R2RPT2plUWYrT243L3Vmc0hsUnE1YWFFeW0zeXFyOHJVRTlvbU1nU2N6QlZrYWppTHZyaVVETW1vQzQ3clJ6c3MyS2ZhZmZzNFViNEZjRjc0NzVrMURPVHlONTcxc0p1bW1wZDVVdXlYdXRYc3ZhZ3l2Y2VGZzRQelNWcHVOSVpOdmNHcXVvVGhhbUptYllEWTYvTUt2aVZ6UUNBQUE9In0= -->
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["ht"],"name":[1],"type":["chr"],"align":["left"]},{"label":["count"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"6' 7''","2":"1"},{"1":"6' 2''","2":"4"},{"1":"6' 1''","2":"3"},{"1":"6' 0''","2":"3"},{"1":"5' 8''","2":"1"},{"1":"5' 6''","2":"1"},{"1":"5' 10''","2":"1"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[7]},"pages":{}}}
   </script>
 </div>
 <!-- rnb-frame-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTkFcbk5BXG5gYGAifQ== -->
-<pre class="r"><code>NA
-NA</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTkFcbmBgYCJ9 -->
+<pre class="r"><code>NA</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1819,11 +1848,19 @@ womens_basketball_stats |&gt;
 <!-- rnb-frame-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI2pvaW5pbmcgdGhlIHR3byB0YWJsZXMgeW91IGhhdmUgYnkgdGhlIG5hbWVzIG9mIHRoZSBwbGF5ZXJzLCBzaW5jZSB0aGV5IGhhdmUgZGlmZmVyZW50IGZvcm1hdHMuIFlvdSdyZSBnb2luZyB0byBoYXZlIHRvIG1ha2UgdXNlIG9mIHN0cl9kZXRlY3QoKVxuXG5cbmBgYCJ9 -->
+<pre class="r"><code>#joining the two tables you have by the names of the players, since they have different formats. You&#39;re going to have to make use of str_detect()
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 <p>Q1: Describe the limits of the data in terms of timeframe, what is
 and is not included and any codes or other information you’d need to
 find definitions for, and what you’ve done to better define it.</p>
 <p>In terms of timeframe, the datasets that we are working with are
-limited to the current Maryland women&#39;s basketball team, using
+limited to the current Maryland women’s basketball team, using
 information from the roster that was released at the beginning of the
 season. The first dataset, the roster data, includes biographical
 information about each player including their name, position, height,
@@ -1841,7 +1878,7 @@ the resources and whether or not there are inequities for the women’s
 basketball team.</p>
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiRGF0YSBBbmFseXNpcyBQcm9qZWN0IgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgpgYGB7cn0KI0xvYWQgYW5kIGNsZWFuIHRoZSBkYXRhCndvbWVuc19iYXNrZXRiYWxsX3N0YXRzIDwtIHJlYWRfY3N2KCJkYXRhL3dvbWVuc19iYXNrZXRiYWxsX3N0YXRzLmNzdiIpIHw+IGNsZWFuX25hbWVzKCkKCnVtZF9yb3N0ZXIgPC0gcmVhZF9jc3YoImRhdGEvdW1kX3Jvc3Rlci5jc3YiKSB8PiBjbGVhbl9uYW1lcygpCmBgYAoKYGBge3J9CiNTaG93cyBiYXNpYyBleHBsb3JhdG9yeSBhbmFseXNpcyB0byBkZW1vbnN0cmF0ZSBhbiB1bmRlcnN0YW5kaW5nIG9mIHRoZSBkYXRhc2V0LCBpbmNsdWRpbmcgdGhlIG51bWJlciBvZiByb3dzIGFuZCBjb2x1bW5zLCBhbnkgb2J2aW91cyBsaW1pdGF0aW9ucyBvciBmbGF3cyBhbmQgYW55IHJlYXNvbnMgd2h5IGl0IG1pZ2h0IG5vdCBiZSBhYmxlIHRvIGFuc3dlciB0aGUgcXVlc3Rpb25zIHlvdSd2ZSBsaXN0ZWQgbGFzdCB3ZWVrLgp1bWRfcm9zdGVyIHw+CiAgZ3JvdXBfYnkoaHQpIHw+CiAgc3VtbWFyaXNlKGNvdW50ID0gbigpKSB8PgogIGFycmFuZ2UoZGVzYyhodCkpCgpgYGAKCmBgYHtyfQojU2hvd3MgYmFzaWMgZXhwbG9yYXRvcnkgYW5hbHlzaXMgdG8gZGVtb25zdHJhdGUgYW4gdW5kZXJzdGFuZGluZyBvZiB0aGUgZGF0YXNldCwgaW5jbHVkaW5nIHRoZSBudW1iZXIgb2Ygcm93cyBhbmQgY29sdW1ucywgYW55IG9idmlvdXMgbGltaXRhdGlvbnMgb3IgZmxhd3MgYW5kIGFueSByZWFzb25zIHdoeSBpdCBtaWdodCBub3QgYmUgYWJsZSB0byBhbnN3ZXIgdGhlIHF1ZXN0aW9ucyB5b3UndmUgbGlzdGVkIGxhc3Qgd2Vlay4Kd29tZW5zX2Jhc2tldGJhbGxfc3RhdHMgfD4KICBncm91cF9ieShhdmdfMjMsIG51bWJlcl9wbGF5ZXIpIHw+CiAgYXJyYW5nZShkZXNjKGF2Z18yMykpCmBgYAoKUTE6IERlc2NyaWJlIHRoZSBsaW1pdHMgb2YgdGhlIGRhdGEgaW4gdGVybXMgb2YgdGltZWZyYW1lLCB3aGF0IGlzIGFuZCBpcyBub3QgaW5jbHVkZWQgYW5kIGFueSBjb2RlcyBvciBvdGhlciBpbmZvcm1hdGlvbiB5b3UnZCBuZWVkIHRvIGZpbmQgZGVmaW5pdGlvbnMgZm9yLCBhbmQgd2hhdCB5b3UndmUgZG9uZSB0byBiZXR0ZXIgZGVmaW5lIGl0LgoKSW4gdGVybXMgb2YgdGltZWZyYW1lLCB0aGUgZGF0YXNldHMgdGhhdCB3ZSBhcmUgd29ya2luZyB3aXRoIGFyZSBsaW1pdGVkIHRvIHRoZSBjdXJyZW50IE1hcnlsYW5kIHdvbWVuXCdzIGJhc2tldGJhbGwgdGVhbSwgdXNpbmcgaW5mb3JtYXRpb24gZnJvbSB0aGUgcm9zdGVyIHRoYXQgd2FzIHJlbGVhc2VkIGF0IHRoZSBiZWdpbm5pbmcgb2YgdGhlIHNlYXNvbi4gVGhlIGZpcnN0IGRhdGFzZXQsIHRoZSByb3N0ZXIgZGF0YSwgaW5jbHVkZXMgYmlvZ3JhcGhpY2FsIGluZm9ybWF0aW9uIGFib3V0IGVhY2ggcGxheWVyIGluY2x1ZGluZyB0aGVpciBuYW1lLCBwb3NpdGlvbiwgaGVpZ2h0LCB5ZWFyLCBob21ldG93biBhbmQgcHJldmlvdXMgY29sbGVnZSB0aGF0IHRoZXkgdHJhbnNmZXJyZWQgZnJvbSBpZiBhcHBsaWNhYmxlLiBUaGUgc2Vjb25kIGRhdGFzZXQgd2UgYXJlIGNvbnNpZGVyaW5nIGlzIGEgY29tcGlsYXRpb24gb2Ygc3RhdHMgb25seSBmcm9tIHRoZSBmaXJzdCBzZXZlbiBnYW1lcy4gVGhlc2Ugc3RhdHMgaW5jbHVkZSBtZXRyaWNzIGxpa2UgZ2FtZXMgcGxheWVkLCBnYW1lcyBzdGFydGVkLCBtaW51dGVzIHBsYXllZCwgcG9pbnRzLCBzaG9vdGluZyBwZXJjZW50YWdlIGFuZCByZWJvdW5kcy4gVGhlcmUgYXJlIG5vIG1ldHJpY3MgdGhhdCB3ZSBuZWVkIHRvIGZpbmQgZGVmaW5pdGlvbnMgZm9yLCBidXQgd2UgY291bGQgYWRkIHN0YXRzIGZyb20gdGhlIHVwY29taW5nIGdhbWVzIGlmIHdlIHNvIGNob29zZS4gT3RoZXIgaW5mb3JtYXRpb24gd2UgbmVlZCBpcyB0aGUgbWFqb3JzIG9mIGVhY2ggb2YgdGhlIHBsYXllcnMsIHdoaWNoIHdhcyBub3QgaW5jbHVkZWQgaW4gdGhlIHJvc3RlciBvciBzdGF0aXN0aWNzIGRhdGFzZXQuIFRvIGFuc3dlciBhbm90aGVyIG9uZSBvZiBvdXIgb3JpZ2luYWwgcXVlc3Rpb25zLCB3ZSB3aWxsIGFsc28gbG9vayBmb3IgYW5vdGhlciBkYXRhc2V0IGFib3V0IHRoZSBwbGF5ZXJzJyBmaW5hbmNpYWwgcmVjb3JkcyBmcm9tIHRoZSBsYXN0IGZldyB5ZWFycyB0byBnZXQgaW5mb3JtYXRpb24gb24gdGhlIHJlc291cmNlcyBhbmQgd2hldGhlciBvciBub3QgdGhlcmUgYXJlIGluZXF1aXRpZXMgZm9yIHRoZSB3b21lbidzIGJhc2tldGJhbGwgdGVhbS4K</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiRGF0YSBBbmFseXNpcyBQcm9qZWN0IgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgpgYGB7cn0KI0xvYWQgbGlicmFyaWVzCmxpYnJhcnkoamFuaXRvcikKbGlicmFyeSh0aWR5dmVyc2UpCmBgYAoKYGBge3J9CiNMb2FkIGFuZCBjbGVhbiB0aGUgZGF0YQp3b21lbnNfYmFza2V0YmFsbF9zdGF0cyA8LSByZWFkX2NzdigiZGF0YS93b21lbnNfYmFza2V0YmFsbF9zdGF0cy5jc3YiKSB8PiBjbGVhbl9uYW1lcygpCgp1bWRfcm9zdGVyIDwtIHJlYWRfY3N2KCJkYXRhL3VtZF9yb3N0ZXIuY3N2IikgfD4gY2xlYW5fbmFtZXMoKQpgYGAKCmBgYHtyfQojU2hvd3MgYmFzaWMgZXhwbG9yYXRvcnkgYW5hbHlzaXMgdG8gZGVtb25zdHJhdGUgYW4gdW5kZXJzdGFuZGluZyBvZiB0aGUgZGF0YXNldCwgaW5jbHVkaW5nIHRoZSBudW1iZXIgb2Ygcm93cyBhbmQgY29sdW1ucywgYW55IG9idmlvdXMgbGltaXRhdGlvbnMgb3IgZmxhd3MgYW5kIGFueSByZWFzb25zIHdoeSBpdCBtaWdodCBub3QgYmUgYWJsZSB0byBhbnN3ZXIgdGhlIHF1ZXN0aW9ucyB5b3UndmUgbGlzdGVkIGxhc3Qgd2Vlay4KdW1kX3Jvc3RlciB8PgogIGdyb3VwX2J5KGh0KSB8PgogIHN1bW1hcmlzZShjb3VudCA9IG4oKSkgfD4KICBhcnJhbmdlKGRlc2MoaHQpKQoKYGBgCgpgYGB7cn0KI1Nob3dzIGJhc2ljIGV4cGxvcmF0b3J5IGFuYWx5c2lzIHRvIGRlbW9uc3RyYXRlIGFuIHVuZGVyc3RhbmRpbmcgb2YgdGhlIGRhdGFzZXQsIGluY2x1ZGluZyB0aGUgbnVtYmVyIG9mIHJvd3MgYW5kIGNvbHVtbnMsIGFueSBvYnZpb3VzIGxpbWl0YXRpb25zIG9yIGZsYXdzIGFuZCBhbnkgcmVhc29ucyB3aHkgaXQgbWlnaHQgbm90IGJlIGFibGUgdG8gYW5zd2VyIHRoZSBxdWVzdGlvbnMgeW91J3ZlIGxpc3RlZCBsYXN0IHdlZWsuCndvbWVuc19iYXNrZXRiYWxsX3N0YXRzIHw+CiAgZ3JvdXBfYnkoYXZnXzIzLCBudW1iZXJfcGxheWVyKSB8PgogIGFycmFuZ2UoZGVzYyhhdmdfMjMpKQpgYGAKCmBgYHtyfQojam9pbmluZyB0aGUgdHdvIHRhYmxlcyB5b3UgaGF2ZSBieSB0aGUgbmFtZXMgb2YgdGhlIHBsYXllcnMsIHNpbmNlIHRoZXkgaGF2ZSBkaWZmZXJlbnQgZm9ybWF0cy4gWW91J3JlIGdvaW5nIHRvIGhhdmUgdG8gbWFrZSB1c2Ugb2Ygc3RyX2RldGVjdCgpCgoKYGBgCgpRMTogRGVzY3JpYmUgdGhlIGxpbWl0cyBvZiB0aGUgZGF0YSBpbiB0ZXJtcyBvZiB0aW1lZnJhbWUsIHdoYXQgaXMgYW5kIGlzIG5vdCBpbmNsdWRlZCBhbmQgYW55IGNvZGVzIG9yIG90aGVyIGluZm9ybWF0aW9uIHlvdSdkIG5lZWQgdG8gZmluZCBkZWZpbml0aW9ucyBmb3IsIGFuZCB3aGF0IHlvdSd2ZSBkb25lIHRvIGJldHRlciBkZWZpbmUgaXQuCgpJbiB0ZXJtcyBvZiB0aW1lZnJhbWUsIHRoZSBkYXRhc2V0cyB0aGF0IHdlIGFyZSB3b3JraW5nIHdpdGggYXJlIGxpbWl0ZWQgdG8gdGhlIGN1cnJlbnQgTWFyeWxhbmQgd29tZW4ncyBiYXNrZXRiYWxsIHRlYW0sIHVzaW5nIGluZm9ybWF0aW9uIGZyb20gdGhlIHJvc3RlciB0aGF0IHdhcyByZWxlYXNlZCBhdCB0aGUgYmVnaW5uaW5nIG9mIHRoZSBzZWFzb24uIFRoZSBmaXJzdCBkYXRhc2V0LCB0aGUgcm9zdGVyIGRhdGEsIGluY2x1ZGVzIGJpb2dyYXBoaWNhbCBpbmZvcm1hdGlvbiBhYm91dCBlYWNoIHBsYXllciBpbmNsdWRpbmcgdGhlaXIgbmFtZSwgcG9zaXRpb24sIGhlaWdodCwgeWVhciwgaG9tZXRvd24gYW5kIHByZXZpb3VzIGNvbGxlZ2UgdGhhdCB0aGV5IHRyYW5zZmVycmVkIGZyb20gaWYgYXBwbGljYWJsZS4gVGhlIHNlY29uZCBkYXRhc2V0IHdlIGFyZSBjb25zaWRlcmluZyBpcyBhIGNvbXBpbGF0aW9uIG9mIHN0YXRzIG9ubHkgZnJvbSB0aGUgZmlyc3Qgc2V2ZW4gZ2FtZXMuIFRoZXNlIHN0YXRzIGluY2x1ZGUgbWV0cmljcyBsaWtlIGdhbWVzIHBsYXllZCwgZ2FtZXMgc3RhcnRlZCwgbWludXRlcyBwbGF5ZWQsIHBvaW50cywgc2hvb3RpbmcgcGVyY2VudGFnZSBhbmQgcmVib3VuZHMuIFRoZXJlIGFyZSBubyBtZXRyaWNzIHRoYXQgd2UgbmVlZCB0byBmaW5kIGRlZmluaXRpb25zIGZvciwgYnV0IHdlIGNvdWxkIGFkZCBzdGF0cyBmcm9tIHRoZSB1cGNvbWluZyBnYW1lcyBpZiB3ZSBzbyBjaG9vc2UuIE90aGVyIGluZm9ybWF0aW9uIHdlIG5lZWQgaXMgdGhlIG1ham9ycyBvZiBlYWNoIG9mIHRoZSBwbGF5ZXJzLCB3aGljaCB3YXMgbm90IGluY2x1ZGVkIGluIHRoZSByb3N0ZXIgb3Igc3RhdGlzdGljcyBkYXRhc2V0LiBUbyBhbnN3ZXIgYW5vdGhlciBvbmUgb2Ygb3VyIG9yaWdpbmFsIHF1ZXN0aW9ucywgd2Ugd2lsbCBhbHNvIGxvb2sgZm9yIGFub3RoZXIgZGF0YXNldCBhYm91dCB0aGUgcGxheWVycycgZmluYW5jaWFsIHJlY29yZHMgZnJvbSB0aGUgbGFzdCBmZXcgeWVhcnMgdG8gZ2V0IGluZm9ybWF0aW9uIG9uIHRoZSByZXNvdXJjZXMgYW5kIHdoZXRoZXIgb3Igbm90IHRoZXJlIGFyZSBpbmVxdWl0aWVzIGZvciB0aGUgd29tZW4ncyBiYXNrZXRiYWxsIHRlYW0uCg==</div>
 
 
 
