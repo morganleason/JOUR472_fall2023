@@ -15,14 +15,12 @@ womens_basketball_stats <- read_csv("data/womens_basketball_stats.csv") |> clean
 
 umd_roster <- read_csv("data/umd_roster.csv") |> clean_names()
 
-tabula_margin <-read_csv("data/tabula-Margin.csv") |> clean_names()
+tabula_womens_offense_defense <- read_csv("data/tabula-womens-offense-defense.csv") |> clean_names()
 
-tabula_offense <- read_csv("data/tabula-Offense.csv") |> clean_names()
-
-tabula_scoring_defense <- read_csv("data/tabula-ScoringDefense.csv") |> clean_names()
+wbb_majors <- read_csv("data/wbb_majors.csv") |> clean_names()
 ```
 
-1.  How tall are the players on the University of Maryland women's basketball team? Which player is the tallest? Answer:
+1.  How tall are the players on the University of Maryland women's basketball team? Which player is the tallest?
 
 ```{r}
 umd_roster |>
@@ -32,57 +30,126 @@ umd_roster |>
 
 ```
 
-2.  Which University of Maryland women's basketball players score the highest points in games? Answer:
+A: The tallest player is Hawa Doumbouya, with a height of 6 feet, 7 inches.
+
+2.  How do the heights of the players at UMD compare to players outside of UMD - Are UMD centers taller or shorter than the average?
 
 ```{r}
+#Load and clean the data
+iowa_roster <- read_csv('data/Iowa_wbb_roster.csv') |> clean_names() |>
+  rename(ht = height)
+
+sc_roster <- read_csv('data/SC_wbb_roster.csv') |> clean_names() |>
+  rename(ht = height)
+
+ncstate_roster <- read_csv('data/NCS_wbb_roster.csv') |> clean_names()
+
+ucla_roster <- read_csv('data/UCLA_wbb_roster.csv') |> clean_names()
+
+texas_roster <- read_csv('data/Texas_wbb_roster.csv') |> clean_names()
+
+```
+
+```{r}
+#make data sets for each of the five teams
+iowa_height <- iowa_roster |>
+  group_by(ht) |>
+  summarise(count = n()) |>
+  arrange(desc(ht))
+
+sc_height <- sc_roster |>
+  group_by(ht) |>
+  summarise(count = n()) |>
+  arrange(desc(ht))
+
+ncs_height <- ncstate_roster |>
+  group_by(ht) |>
+  summarise(count = n()) |>
+  arrange(desc(ht))
+
+ucla_height <- ucla_roster |>
+  group_by(ht) |>
+  summarise(count = n()) |>
+  arrange(desc(ht))
+
+texas_height <- texas_roster |>
+  group_by(ht) |>
+  summarise(count = n()) |>
+  arrange(desc(ht))
+
+```
+
+A: This does show us the heights of everyone on all of these teams each put into different data sets. In these datsets you can clearly see that Maryland have a height problem when it compeares to the top teams in the country. Texas have four players that are 6'4" or taller, and UCLA have six players that are 6'3" or taller. South Carolina have four players 6'3" or taller, NC State also have four, and Iowa have two players 6'3" or taller. All of these team top Maryland's total of one player taller than 6'3".
+
+3.  Which University of Maryland women's basketball players score the highest points in games?
+
+```{r}
+
 womens_basketball_stats |>
   group_by(avg_23, number_player) |>
+  summarise(count = n()) |>
   arrange(desc(avg_23))
 ```
 
-3.  In a few steps, Join the two data sets together (hintby changing the column names and the column item format to match each other):
+A: Our data shows that Shyanne Sellers averages the most points per game (31.9) followed by Jakia Brown Turner (26.9), Lavender Briggs (23.4), Allie Kubek (22.4) and Brinae Alexander (22.3). To determine this, we sorted the average points per game in the order from most to least, finding these five players at the top as a result.
+
+Join the women's basketball stats and umd roster data sets together:
 
 ```{r}
 womens_basketball_stats<- womens_basketball_stats |>
-  rename(name = "number_player")
-```
-
-```{r}
-womens_basketball_stats <- womens_basketball_stats |>
-  separate(name, c('name1', 'name2', 'name3'))
-
-```
-
-```{r}
-womens_basketball_stats <-womens_basketball_stats |>
+  rename(name = "number_player") |>
+  separate(name, c('name1', 'name2', 'name3')) |>
   mutate(new_name = paste(name3, name2, sep=" "))
 
-```
-
-```{r}
 basketball_stats <- umd_roster |>
   inner_join(womens_basketball_stats, by=c("name" = "new_name"))
 
 ```
 
-4. How do the players at UMD compare to players of the same positions outside UMD? Are UMD centers taller or shorter than the average? (using new data set)
+4.  What do the players study at UMD? What major appears to be the most common?
 
 ```{r}
-tabula_combined <- tabula_scoring_defense |>
-  left_join(tabula_offense, join_by(x1))
+womens_basketball_stats <- womens_basketball_stats |>
+  inner_join(wbb_majors, by=c("new_name"))
 
+womens_basketball_stats |>
+  group_by(new_name, major.x) |>
+  summarise(major.x) |>
+  arrange(major.x)
 ```
+
+A: The most common major to study is Letters & Sciences. The findings here are quite clear. The players study majors including Communication, Family Science, Kinesiology, Letters & Sciences and Management studies. Management Studies and Psychology are each tied in second place with two players studying in those fields each. Next steps here could be to look at the data set of the school's majors split up amongst the student population as a whole and see how the team compares.
+
+5. How many women's basketball players are from out of state in comparison to the other schools?
 
 ```{r}
-tabula_margin <- subset(tabula_margin, x1 != 3)
+# Part one, sort through the data for Maryland.
+umd_from_md <- umd_roster |>
+  filter(str_detect(hometown_high_school,"MD"))
 
+umd_from_md
+
+#Part Two- A look at South Carolina
+sc_from_sc <- sc_roster |>
+  filter(str_detect(hometown,"S.C."))
+
+sc_from_sc
+
+#Q5 Part Three- A look at Iowa
+iowa_from_iowa <- iowa_roster |>
+  filter(str_detect(hometown,"Iowa"))
+
+iowa_from_iowa
 ```
 
-```{r}
-tabula_combined <- tabula_combined |>
-  left_join(tabula_combined, tabula_margin, by = " ")
-```
+Answer Q5 Part One: Here we can see that five of the 14 players on the Maryland roster are from the state of Maryland, that's a pretty high percentage. Let's see how it compares to some of the others.
 
-Describe the limits of the data in terms of timeframe, what is and is not included and any codes or other information you'd need to find definitions for, and what you've done to better define it.
+Answer Q5 Part Two: Here we can see that the number one team in the country has only two players on the roster that are from their state. A startlingly low number for such a big and presitigous program in that state.
 
-In terms of timeframe, the datasets that we are working with are limited to the current Maryland women's basketball team, using information from the roster that was released at the beginning of the season. The first dataset, the roster data, includes biographical information about each player including their name, position, height, year, hometown and previous college that they transferred from if applicable. The second dataset we are considering is a compilation of stats only from the first seven games. These stats include metrics like games played, games started, minutes played, points, shooting percentage and rebounds. There are no metrics that we need to find definitions for, but we could add stats from the upcoming games if we so choose. Other information we need is the majors of each of the players, which was not included in the roster or statistics dataset. To answer another one of our original questions, we will also look for another dataset about the players' financial records from the last few years to get information on the resources and whether or not there are inequities for the women's basketball team.
+Answer Q5 Part Three: It's even more surprising that Maryland has more in state recruits than Iowa, a program that's been on the top of the country with Iowan Caitlin Clark for the last few years.
+
+Our most surprising finding so far I believe to be the data when it relates to the amount of in state players that Maryland has. Some would argue that the reason that these top programs aren't filled with in state talent is because they can get better talent from outside soruces. While this is true in some cases, some of these teams have their best pleayer from their state, and still have less in state players than UMD. This shows just how good Maryland is at retaining basketball talent from the DMV area, a place which has a lot of this type of talent.
+
+-   Identify your most newsworthy finding so far and explain why it is.
+
+Our most surprising finding so far I believe to be the data when it relates to the amount of in state players that Maryland has. Some would argue that the reason that these top programs aren't filled with in state talent is because they can get better talent from outside soruces. While this is true in some cases, some of these teams have their best pleayer from their state, and still have less in state players than UMD. This shows just how good Maryland is at retaining basketball talent from the DMV area, a place which has a lot of this type of talent.
