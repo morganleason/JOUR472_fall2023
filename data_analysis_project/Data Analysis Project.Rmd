@@ -24,23 +24,44 @@ wbb_majors <- read_csv("data/wbb_majors.csv") |> clean_names()
 
 ```{r}
 umd_roster |>
-  group_by(ht) |>
-  summarise(count = n()) |>
+  group_by(name, ht) |>
+ summarise(name, ht) |>
   arrange(desc(ht))
 
-```
 
-A: The tallest player is Hawa Doumbouya, with a height of 6 feet, 7 inches.
+umd_roster <- umd_roster |>
+  separate(ht,c('feet', 'inches'), sep = '\' ', convert = TRUE) |> #This line separates the numbers from the height column into two distinct columns 'feet' and 'inches'. The 'sep' function targets the numbers.
+ 
+  mutate(inches, inches = as.numeric(gsub("[^[:digit:]., ]", "",inches))) |> #This line mutates the data in the 'inches' column. It cleans the data by removing characters that aren't periods, commas, spaces, or numbers and converts the data from a character vector to a numeric vector.  
+ 
+  mutate(ht = 12*feet + inches) |> #This line mutates the 'feet' and 'inches' columns into one column named 'ht'. The data in the column 'feet' is multiplied by twelve, as a conversion from feet to inches. The converted data from the column 'feet' is added to 'inches' to get a total number of inches.
+ 
+  select(-inches,-feet) #This line excludes the columns 'inches' and 'feet' from the data frame.
 
-2.  How do the heights of the players at UMD compare to players outside of UMD - Are UMD centers taller or shorter than the average?
 
-```{r}
-#Load and clean the data
-iowa_roster <- read_csv('data/Iowa_wbb_roster.csv') |> clean_names() |>
-  rename(ht = height)
+#umd most common heights
+umd_roster |>
+  group_by(ht) |>
+ summarise(count = n()) |>
+  arrange(desc(count))
 
-sc_roster <- read_csv('data/SC_wbb_roster.csv') |> clean_names() |>
-  rename(ht = height)
+#umd median height
+median(umd_roster$ht)
+ 
+#umd mean height
+mean(umd_roster$ht)
+
+#umd maximum height
+max(umd_roster$ht)
+
+#umd minimum height
+min(umd_roster$ht)
+
+
+
+iowa_roster <- read_csv('data/Iowa_wbb_roster.csv') |> clean_names()
+
+sc_roster <- read_csv('data/SC_wbb_roster.csv') |> clean_names()
 
 ncstate_roster <- read_csv('data/NCS_wbb_roster.csv') |> clean_names()
 
@@ -48,52 +69,178 @@ ucla_roster <- read_csv('data/UCLA_wbb_roster.csv') |> clean_names()
 
 texas_roster <- read_csv('data/Texas_wbb_roster.csv') |> clean_names()
 
+
+sc_roster <- sc_roster|>
+  rename(ht = height)
+
+iowa_roster <- iowa_roster|>
+  rename(ht = height)
+
+
+
+iowa_roster <- iowa_roster |>
+  separate(ht,c('feet', 'inches'), sep = '\' ', convert = TRUE) |>
+  mutate(inches, inches = as.numeric(gsub("[^[:digit:]., ]", "",inches))) |>
+  mutate(ht = 12*feet + inches) |>
+  select(-inches,-feet)
+
+#iowa most common heights
+iowa_roster |>
+  group_by(ht) |>
+ summarise(count = n()) |>
+  arrange(desc(count))
+
+#iowa median height
+median(iowa_roster$ht)
+ 
+#iowa mean height
+mean(iowa_roster$ht)
+
+#iowa maximum height
+max(iowa_roster$ht)
+
+#iowa minimum height
+min(iowa_roster$ht)
+
+
+sc_roster <- sc_roster |>
+  separate(ht,c('feet', 'inches'), sep = '\' ', convert = TRUE) |>
+  mutate(inches, inches = as.numeric(gsub("[^[:digit:]., ]", "",inches))) |>
+  mutate(ht = 12*feet + inches) |>
+  select(-inches,-feet)
+
+#sc most common heights
+sc_roster |>
+  group_by(ht) |>
+ summarise(count = n()) |>
+  arrange(desc(count))
+
+#sc median height
+median(sc_roster$ht)
+ 
+#sc mean height
+mean(sc_roster$ht)
+
+#sc maximum height
+max(sc_roster$ht)
+
+#sc minimum height
+min(sc_roster$ht)
+
+
+ncstate_roster <- ncstate_roster |>
+  separate(ht,c('feet', 'inches'), sep = '\' ', convert = TRUE) |>
+  mutate(inches, inches = as.numeric(gsub("[^[:digit:]., ]", "",inches))) |>
+  mutate(ht = 12*feet + inches) |>
+  select(-inches,-feet)
+
+#ncstate most common heights
+ncstate_roster |>
+  group_by(ht) |>
+ summarise(count = n()) |>
+  arrange(desc(count))
+
+#ncstate median height
+median(ncstate_roster$ht)
+ 
+#ncstate mean height
+mean(ncstate_roster$ht)
+
+#ncstate maximum height
+max(ncstate_roster$ht)
+
+#ncstate minimum height
+min(ncstate_roster$ht)
+
+
+ucla_roster <- ucla_roster |>
+  separate(ht,c('feet', 'inches'), sep = '\' ', convert = TRUE) |>
+  mutate(inches, inches = as.numeric(gsub("[^[:digit:]., ]", "",inches))) |>
+  mutate(ht = 12*feet + inches) |>
+  select(-inches,-feet)
+
+#ucla most common heights
+ucla_roster |>
+  group_by(ht) |>
+ summarise(count = n()) |>
+  arrange(desc(count))
+
+#ucla median height
+median(ucla_roster$ht)
+ 
+#ucla mean height
+mean(ucla_roster$ht)
+
+#ucla maximum height
+max(ucla_roster$ht)
+
+#ucla minimum height
+min(ucla_roster$ht)
+
+
+texas_roster <- texas_roster |>
+  separate(ht,c('feet', 'inches'), sep = '\' ', convert = TRUE) |>
+  mutate(inches, inches = as.numeric(gsub("[^[:digit:]., ]", "",inches))) |>
+  mutate(ht = 12*feet + inches) |>
+  select(-inches,-feet)
+
+#texas most common heights
+texas_roster |>
+  group_by(ht) |>
+ summarise(count = n()) |>
+  arrange(desc(count))
+
+#texas median height
+median(texas_roster$ht)
+ 
+#texas mean height
+mean(texas_roster$ht)
+
+#texas maximum height
+max(texas_roster$ht)
+
+#texas minimum height
+min(texas_roster$ht)
+
+```
+
+A:The tallest player is Hawa Doumbouya, with a height of 6 feet, 7 inches, or 79 inches.
+
+2.  How do the heights of the players at UMD compare to players outside of UMD - Are UMD centers taller or shorter than the average?
+
+```{r}
+#Load and clean the data
+
+all_rosters <- bind_rows(list('Iowa' = iowa_roster, 'South Carolina' = sc_roster, 'NC State' = ncstate_roster, 'UCLA' = ucla_roster, 'Texas' = texas_roster), .id = 'team') 
 ```
 
 ```{r}
-#make data sets for each of the five teams
-iowa_height <- iowa_roster |>
-  group_by(ht) |>
-  summarise(count = n()) |>
-  arrange(desc(ht))
-
-sc_height <- sc_roster |>
-  group_by(ht) |>
-  summarise(count = n()) |>
-  arrange(desc(ht))
-
-ncs_height <- ncstate_roster |>
-  group_by(ht) |>
-  summarise(count = n()) |>
-  arrange(desc(ht))
-
-ucla_height <- ucla_roster |>
-  group_by(ht) |>
-  summarise(count = n()) |>
-  arrange(desc(ht))
-
-texas_height <- texas_roster |>
-  group_by(ht) |>
+#Use the grouped roster data to see how the heights compare to different top teams in the league.
+all_rosters |>
+  group_by(ht,team) |>
   summarise(count = n()) |>
   arrange(desc(ht))
 
 ```
 
-A: This does show us the heights of everyone on all of these teams each put into different data sets. In these datsets you can clearly see that Maryland have a height problem when it compeares to the top teams in the country. Texas have four players that are 6'4" or taller, and UCLA have six players that are 6'3" or taller. South Carolina have four players 6'3" or taller, NC State also have four, and Iowa have two players 6'3" or taller. All of these team top Maryland's total of one player taller than 6'3".
+A: This shows us the heights of all the players on all the top teams in one combined data set. In these data sets you can see that UCLA and South Carolina have the tallest players with a height of 6'7". From the question above, Maryland also has a player at this height. However, Maryland has a height problem when compared to the top teams in the country because Texas has four players that are 6'4" or taller and UCLA has six players that are 6'3" or taller, South Carolina has four players 6'3" or taller, NC State also has four and Iowa has two players 6'3" or taller. All of these teams rank higher with Maryland's total of only one player taller than 6'3".
 
-3.  Which University of Maryland women's basketball players score the highest points in games?
+Why we chose these teams and what makes them "the best" teams:
+
+In short order, these teams have so far proven to be among some of the most elite in the nation. As we began gathering data for this project, they were ranked the top 5 teams in the country in the AP Top 25 poll. But it is deeper than that. All of these teams are big state schools that have respected D1 programs. This is crucial for the height question and the question about schools having homegrown talent. All of these places are schools that attract the best talent and look to support their local communities.
+
+3.  Which University of Maryland Women's Basketball players score the highest points in games?
 
 ```{r}
-
 womens_basketball_stats |>
   group_by(avg_23, number_player) |>
-  summarise(count = n()) |>
-  arrange(desc(avg_23))
+  arrange(desc(avg_23)) |>
+  select(avg_23, number_player)
 ```
 
 A: Our data shows that Shyanne Sellers averages the most points per game (31.9) followed by Jakia Brown Turner (26.9), Lavender Briggs (23.4), Allie Kubek (22.4) and Brinae Alexander (22.3). To determine this, we sorted the average points per game in the order from most to least, finding these five players at the top as a result.
 
-Join the women's basketball stats and umd roster data sets together:
+4.  What do the players study at UMD? What major appears to be the most common?
 
 ```{r}
 womens_basketball_stats<- womens_basketball_stats |>
@@ -105,8 +252,6 @@ basketball_stats <- umd_roster |>
   inner_join(womens_basketball_stats, by=c("name" = "new_name"))
 
 ```
-
-4.  What do the players study at UMD? What major appears to be the most common?
 
 ```{r}
 womens_basketball_stats <- womens_basketball_stats |>
@@ -120,7 +265,7 @@ womens_basketball_stats |>
 
 A: The most common major to study is Letters & Sciences. The findings here are quite clear. The players study majors including Communication, Family Science, Kinesiology, Letters & Sciences and Management studies. Management Studies and Psychology are each tied in second place with two players studying in those fields each. Next steps here could be to look at the data set of the school's majors split up amongst the student population as a whole and see how the team compares.
 
-5. How many women's basketball players are from out of state in comparison to the other schools?
+5.  How many women's basketball players are from out of state in comparison to the other schools?
 
 ```{r}
 # Part one, sort through the data for Maryland.
@@ -142,14 +287,8 @@ iowa_from_iowa <- iowa_roster |>
 iowa_from_iowa
 ```
 
-Answer Q5 Part One: Here we can see that five of the 14 players on the Maryland roster are from the state of Maryland, that's a pretty high percentage. Let's see how it compares to some of the others.
-
-Answer Q5 Part Two: Here we can see that the number one team in the country has only two players on the roster that are from their state. A startlingly low number for such a big and presitigous program in that state.
-
-Answer Q5 Part Three: It's even more surprising that Maryland has more in state recruits than Iowa, a program that's been on the top of the country with Iowan Caitlin Clark for the last few years.
-
-Our most surprising finding so far I believe to be the data when it relates to the amount of in state players that Maryland has. Some would argue that the reason that these top programs aren't filled with in state talent is because they can get better talent from outside soruces. While this is true in some cases, some of these teams have their best pleayer from their state, and still have less in state players than UMD. This shows just how good Maryland is at retaining basketball talent from the DMV area, a place which has a lot of this type of talent.
+Here we can see that five of the 14 players on the Maryland roster are from the state of Maryland, that's a pretty high percentage. Let's see how it compares to some of the others. After part two of the analysis, we can see that the number one team in the country has only two players on the roster that are from their state - a startlingly low number for such a big and prestigous program in that state. The third component of the analysis revealed an even more surprising fact, in which Maryland has more in-state recruits than Iowa, a program that's been on the top of the country with Iowan Caitlin Clark for the last few years.
 
 -   Identify your most newsworthy finding so far and explain why it is.
 
-Our most surprising finding so far I believe to be the data when it relates to the amount of in state players that Maryland has. Some would argue that the reason that these top programs aren't filled with in state talent is because they can get better talent from outside soruces. While this is true in some cases, some of these teams have their best pleayer from their state, and still have less in state players than UMD. This shows just how good Maryland is at retaining basketball talent from the DMV area, a place which has a lot of this type of talent.
+Our most surprising finding in the notebook is the data when it relates to the amount of in-state players that Maryland has. Some would argue that the reason that these top programs are not filled with in-state talent is because they can get better talent from outside sources. While this is true in some cases, some of these teams have their best players from their state, and still have fewer in-state players than UMD. This shows just how good Maryland is at retaining basketball talent from the DMV area.
