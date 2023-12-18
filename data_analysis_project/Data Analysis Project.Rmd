@@ -9,6 +9,8 @@ library(janitor)
 library(tidyverse)
 ```
 
+Link to final memo: <https://docs.google.com/document/d/1wY2d97k4uqln9b_-zWUgyMLRIf1_NxrWUmUsRqvsSCY/edit>
+
 ```{r}
 #Load the data sets and clean the column names
 womens_basketball_stats <- read_csv("data/womens_basketball_stats.csv") |> clean_names()
